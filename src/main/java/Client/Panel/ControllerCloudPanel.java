@@ -132,6 +132,10 @@ public class ControllerCloudPanel implements Initializable {
         return filesTable.getSelectionModel().getSelectedItem().getFilename();
     }
 
+    public String getCurrentPath() {
+        return pathField.getText();
+    }
+
 
 
 

@@ -1,12 +1,13 @@
 package Client.Panel;
 
+import Interfaces.Message;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
-import OriginDel.PanelController;
+import org.omg.CORBA.Object;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,7 +17,7 @@ import java.nio.file.Paths;
 public class ControllerMainPanel {
 
     @FXML
-    VBox ClientPanel, ServerPanel;
+    public VBox ClientPanel, ServerPanel;
 
     static ControllerMainPanel controllerMP;
 
@@ -27,8 +28,8 @@ public class ControllerMainPanel {
         return controllerMP;
     }
 
-    public static Object inputMessage() {
-return new Object;
+    public static void inputMessage() {
+
     }
 
     public static void outputMessage() {
@@ -40,8 +41,8 @@ return new Object;
     }
 
     public void copyBtnAction(ActionEvent actionEvent) {
-        PanelController leftPC = (PanelController) ClientPanel.getProperties().get("ctrl");
-        PanelController rightPC = (PanelController) ServerPanel.getProperties().get("ctrl");
+        ControllerCloudPanel leftPC = (ControllerCloudPanel) ClientPanel.getProperties().get("ctrl");
+        ControllerCloudPanel rightPC = (ControllerCloudPanel) ServerPanel.getProperties().get("ctrl");
 
         if (leftPC.getSelectedFilename() == null && rightPC.getSelectedFilename() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "No file selected", ButtonType.OK);
@@ -49,7 +50,7 @@ return new Object;
             return;
         }
 
-        PanelController srcPC = null, dstPC = null;
+        ControllerCloudPanel srcPC = null, dstPC = null;
         if (leftPC.getSelectedFilename() != null) {
             srcPC = leftPC;
             dstPC = rightPC;
@@ -73,4 +74,6 @@ return new Object;
 
     public void btnAboutAction(ActionEvent actionEvent) {
     }
+
+
 }

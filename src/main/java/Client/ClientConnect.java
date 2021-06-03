@@ -1,12 +1,12 @@
 package Client;
 
-import Client.Panel.ControllerMainPanel;
 import Interfaces.Message;
 import Server.ListMessage;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import Client.Panel.*;
 
 
 
@@ -75,7 +75,8 @@ public class ClientConnect implements Initializable  {
                     case LIST:
                         ListMessage list = (ListMessage) message;
                         Platform.runLater(() -> {
-                            ControllerMainPanellistView.getItems().clear();
+                            // соеденить с ServerPanel в ControllerMainPanel
+                            listView.getItems().clear();
                             listView.getItems()
                                     .addAll(list.getFiles());
                         });
