@@ -32,8 +32,8 @@
 </HBox>
 
    <HBox VBox.vgrow="ALWAYS">
-      <fx:include fx:id="ClientPanel" source="cloudPanel.fxml" HBox.hgrow="ALWAYS" />
-      <fx:include fx:id="ServerPanel" source="cloudPanel.fxml" HBox.hgrow="ALWAYS" />
+      <fx:include fx:id="ClientPanel" source="PCPanel.fxml" HBox.hgrow="ALWAYS" />
+      <fx:include fx:id="ServerPanel" source="ServerPanel.fxml" HBox.hgrow="ALWAYS" />
    </HBox>
 
 

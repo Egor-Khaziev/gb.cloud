@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-public class FileInfo {
+public class ClientFileInfo {
     public enum FileType {
         FILE("F"), DIRECTORY("D");
 
@@ -24,7 +24,7 @@ public class FileInfo {
     private String filename;
     private FileType type;
     private long size;
-    private LocalDateTime lastModified;
+    //private LocalDateTime lastModified;
 
     public String getFilename() {
         return filename;
@@ -50,15 +50,15 @@ public class FileInfo {
         this.size = size;
     }
 
-    public LocalDateTime getLastModified() {
-        return lastModified;
-    }
+//    public LocalDateTime getLastModified() {
+//        return lastModified;
+//    }
+//
+//    public void setLastModified(LocalDateTime lastModified) {
+//        this.lastModified = lastModified;
+//    }
 
-    public void setLastModified(LocalDateTime lastModified) {
-        this.lastModified = lastModified;
-    }
-
-    public FileInfo(Path path) {
+    public ClientFileInfo(Path path) {
         try {
             this.filename = path.getFileName().toString();
             this.size = Files.size(path);
@@ -66,7 +66,7 @@ public class FileInfo {
             if (this.type == FileType.DIRECTORY) {
                 this.size = -1L;
             }
-            this.lastModified = LocalDateTime.ofInstant(Files.getLastModifiedTime(path).toInstant(), ZoneOffset.ofHours(3));
+            //this.lastModified = LocalDateTime.ofInstant(Files.getLastModifiedTime(path).toInstant(), ZoneOffset.ofHours(3));
         } catch (IOException e) {
             throw new RuntimeException("Unable to create file info from path");
         }

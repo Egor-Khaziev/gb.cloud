@@ -33,13 +33,15 @@ public class ServerHandler implements Runnable, Closeable {
                 Message msg = (Message) is.readObject();
                 switch (msg.getType()) {
                     case FILE:
+                        log.debug("файл запрос");
                         handleFileMessage(msg);
+                        log.debug("файл отправлен");
                         break;
                     case LIST_REQUEST:
-                        List<String> files = Files.list(Paths.get(serverDir))
-                                .map(p -> p.getFileName().toString())
-                                .collect(Collectors.toList());
-                        os.writeObject(new ListMessage(files));
+                        log.debug("лист запрос");
+
+                        os.writeObject(new ListMessage(serverDir));
+                        log.debug("лист отправлен");
                         os.flush();
                         break;
                 }

@@ -1,13 +1,12 @@
 package Client.Panel;
 
-import Interfaces.Message;
+import Client.ClientConnect;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
-import org.omg.CORBA.Object;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,6 +19,12 @@ public class ControllerMainPanel {
     public VBox ClientPanel, ServerPanel;
 
     static ControllerMainPanel controllerMP;
+    private static ClientConnect clientConnect;
+
+    {
+        clientConnect = ClientConnect.getClientConnect();
+    }
+
 
     private static ControllerMainPanel getControllerMP() {
         if (controllerMP == null) {
@@ -28,21 +33,14 @@ public class ControllerMainPanel {
         return controllerMP;
     }
 
-    public static void inputMessage() {
-
-    }
-
-    public static void outputMessage() {
-
-    }
 
     public void btnExitAction(ActionEvent actionEvent) {
         Platform.exit();
     }
 
     public void copyBtnAction(ActionEvent actionEvent) {
-        ControllerCloudPanel leftPC = (ControllerCloudPanel) ClientPanel.getProperties().get("ctrl");
-        ControllerCloudPanel rightPC = (ControllerCloudPanel) ServerPanel.getProperties().get("ctrl");
+        ControllerPCPanel leftPC = (ControllerPCPanel) ClientPanel.getProperties().get("ctrl");
+        ControllerPCPanel rightPC = (ControllerPCPanel) ServerPanel.getProperties().get("ctrl");
 
         if (leftPC.getSelectedFilename() == null && rightPC.getSelectedFilename() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "No file selected", ButtonType.OK);
@@ -50,7 +48,7 @@ public class ControllerMainPanel {
             return;
         }
 
-        ControllerCloudPanel srcPC = null, dstPC = null;
+        ControllerPCPanel srcPC = null, dstPC = null;
         if (leftPC.getSelectedFilename() != null) {
             srcPC = leftPC;
             dstPC = rightPC;
